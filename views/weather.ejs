@@ -17,7 +17,7 @@
     />
   </head>
   <body>
-    <div class="container">
+    <div class="container" style="height: <%= containerHeight %>">
       <form action="/" method="post">
         <div class="search-box">
           <i class="bx bxs-map"></i>
@@ -31,7 +31,7 @@
           <button type="submit" class="bx bx-search"></button>
         </div>
       </form>
-      <div class="weather-box">
+      <div class="weather-box" style="visibility: <%= foundLocation %>">
         <div class="box">
           <div class="info-weather">
             <div class="weather">
@@ -44,7 +44,7 @@
         </div>
       </div>
 
-      <div class="weather-detials">
+      <div class="weather-detials" style="visibility: <%= foundLocation %>">
         <div class="humidity">
           <i class="bx bx-water"></i>
           <div class="text">
@@ -63,6 +63,12 @@
             </div>
             <p>Wind Speed</p>
           </div>
+        </div>
+      </div>
+      <div class="not-found" style="visibility: <%= notFound %>">
+        <div class="box">
+          <img src="<%= imageSrc %>" />
+          <p>Oops! Location not found!</p>
         </div>
       </div>
     </div>

@@ -14,10 +14,13 @@ const port = process.env.PORT;
 app.get("/", function (req, res) {
   //res.sendFile(__dirname + "/index.html");
   res.render("weather", {
-    location: "",
+    containerHeight: "100px",
+    foundLocation: "hidden",
+    notFound: "hidden",
+    location: "City Name",
     imageSrc: "images/rain.png",
     temperature: "0",
-    cloudsState: "Broken Clouds",
+    cloudsState: "Weather State",
     humidityPercentage: "0",
     windSpeedKM: "0",
   });
@@ -38,7 +41,17 @@ app.post("/", function (req, res) {
   https.get(url, function (response) {
     console.log(response.statusCode);
     if (response.statusCode === 404) {
-      res.redirect("/");
+      res.render("weather", {
+        containerHeight: "400px",
+        foundLocation: "hidden",
+        notFound: "visible",
+        location: "",
+        imageSrc: "images/404.png",
+        temperature: "",
+        cloudsState: "",
+        humidityPercentage: "",
+        windSpeedKM: "",
+      });
       return;
     }
     response.on("data", function (data) {
@@ -68,6 +81,9 @@ app.post("/", function (req, res) {
           imageURL = "images/rain.png";
       }
       res.render("weather", {
+        containerHeight: "555px",
+        foundLocation: "visible",
+        notFound: "hidden",
         location: query,
         imageSrc: imageURL,
         temperature: temp,
@@ -81,10 +97,3 @@ app.post("/", function (req, res) {
 app.listen(port, function () {
   console.log(`Server is running on port ${port}`);
 });
-/*
-      <div class="not-found">
-        <div class="box">
-          <img src="404.png" />
-          <p>Oops! Location not found!</p>
-        </div>
-      </div> */
