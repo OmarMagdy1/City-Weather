@@ -26,6 +26,7 @@
             name="cityName"
             id="cityInput"
             placeholder="Enter Location"
+            autocomplete="off"
           />
           <button type="submit" class="bx bx-search"></button>
         </div>
@@ -34,6 +35,7 @@
         <div class="box">
           <div class="info-weather">
             <div class="weather">
+              <p class="location"><%= location %></p>
               <img src="<%= imageSrc %>" />
               <p class="temperature"><%= temperature %><span>°C</span></p>
               <p class="description"><%= cloudsState %></p>

@@ -14,6 +14,7 @@ const port = process.env.PORT;
 app.get("/", function (req, res) {
   //res.sendFile(__dirname + "/index.html");
   res.render("weather", {
+    location: "",
     imageSrc: "images/rain.png",
     temperature: "0",
     cloudsState: "Broken Clouds",
@@ -67,6 +68,7 @@ app.post("/", function (req, res) {
           imageURL = "images/rain.png";
       }
       res.render("weather", {
+        location: query,
         imageSrc: imageURL,
         temperature: temp,
         cloudsState: weatherDescription,
