@@ -8,14 +8,13 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(express.static("images"));
 
 const port = process.env.PORT;
 
 app.get("/", function (req, res) {
   //res.sendFile(__dirname + "/index.html");
   res.render("weather", {
-    imageSrc: "rain.png",
+    imageSrc: "images/rain.png",
     temperature: "0",
     cloudsState: "Broken Clouds",
     humidityPercentage: "0",
@@ -50,22 +49,22 @@ app.post("/", function (req, res) {
       var imageURL = "";
       switch (weatherData.weather[0].main) {
         case "Clouds":
-          imageURL = "cloud.png";
+          imageURL = "images/cloud.png";
           break;
         case "Clear":
-          imageURL = "clear.png";
+          imageURL = "images/clear.png";
           break;
         case "Rain":
-          imageURL = "rain.png";
+          imageURL = "images/rain.png";
           break;
         case "Snow":
-          imageURL = "snow.png";
+          imageURL = "images/snow.png";
           break;
         case "Haze":
-          imageURL = "mist.png";
+          imageURL = "images/mist.png";
           break;
         default:
-          imageURL = "rain.png";
+          imageURL = "images/rain.png";
       }
       res.render("weather", {
         imageSrc: imageURL,
